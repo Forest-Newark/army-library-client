@@ -1,0 +1,45 @@
+<p-dialog header="composition"  [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+  <div class="ui-grid ui-grid-responsive ui-fluid" >
+      <div class="ui-grid-row">
+          <div class="ui-grid-col-3"><label for="catagory">Catagory</label></div>
+          <div class="ui-grid-col-9"><input pInputText id="catagory" [(ngModel)]="comp.catagory" /></div>
+      </div>
+      <div class="ui-grid-row">
+          <div class="ui-grid-col-3"><label for="libraryNumber">Library Number</label></div>
+          <div class="ui-grid-col-9"><input pInputText id="libraryNumber" [(ngModel)]="comp.libraryNumber" /></div>
+      </div>
+     <div class="ui-grid-row">
+          <div class="ui-grid-col-3"><label for="title">Title</label></div>
+          <div class="ui-grid-col-9"><input pInputText id="title" [(ngModel)]="comp.title" /></div>
+      </div>
+      <div class="ui-grid-row">
+          <div class="ui-grid-col-3"><label for="ensemble">Ensemble</label></div>
+          <div class="ui-grid-col-9"><input pInputText id="ensembe" [(ngModel)]="comp.ensemble" /></div>
+      </div>
+      <div class="ui-grid-row">
+          <div class="ui-grid-col-3"><label for="composer">Composer</label></div>
+          <div class="ui-grid-col-9"><input pInputText id="composer" [(ngModel)]="comp.composer" /></div>
+      </div>
+      <div class="ui-grid-row">
+          <div class="ui-grid-col-3"><label for="arranger">Arranger</label></div>
+          <div class="ui-grid-col-9"><input pInputText id="arranger" [(ngModel)]="comp.arranger" /></div>
+      </div>
+      <div class="ui-grid-row">
+          <div class="ui-grid-col-3"><label for="composer">Copyright</label></div>
+          <div class="ui-grid-col-9"><input pInputText id="copyright" [(ngModel)]="comp.copyright" /></div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col-3"><label for="url">URL</label></div>
+        <div class="ui-grid-col-9"><textarea pInputTextarea></textarea></div>
+    </div>
+      <div class="ui-grid-row">
+          <div class="ui-grid-col-3"><label for="notes">Notes--</label></div>
+          <div class="ui-grid-col-9"><textarea pInputTextarea [(ngModel)]="comp.notes"></textarea></div>
+      </div>
+  </div>
+  <p-footer>
+      <div class="ui-dialog-buttonpane ui-helper-clearfix">
+          <button *ngIf="isUserAuthenticated()" type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+      </div>
+  </p-footer>
+</p-dialog>

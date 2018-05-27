@@ -1,0 +1,80 @@
+<div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+    <input #gb type="text" pInputText size="50" placeholder="Global Filter">
+    <button style="float:right" *ngIf="isUserAuthenticated()"  type="button" pButton icon="fas fa-plus-square" (click)="newComposition()"></button>
+</div>
+<p-dataTable [value]="compositions" [globalFilter]="gb" [rows]="25" [paginator]="true" selectionMode="single" (onRowSelect)="onRowSelect($event)">
+  <!-- <p-header><div *ngIf="isUserAuthenticated()" class="ui-helper-clearfix" style="width:100%"><button type="button" pButton icon="fa-plus" style="float:left" label="Add"></button></div></p-header> -->
+  <p-column field="catagory" header="Catagory" sortable="true"></p-column> 
+  <p-column field="libraryNumber" header="Library Number" sortable="true"></p-column>
+  <p-column field="title" header="Title" sortable="true"></p-column>
+  <p-column field="composer" header="Composer"></p-column> 
+  <ng-template pTemplate="paginatorLeft">
+      <button type="button" pButton icon="fa-refresh"></button>
+  </ng-template>
+  <ng-template pTemplate="paginatorRight">
+      <button type="button" pButton icon="fa-cloud-upload"></button>
+  </ng-template>
+</p-dataTable>
+
+
+<p-dialog header="Composition"  [(visible)]="displayDialog" [responsive]="false" [width]="600" showEffect="fade" [modal]="true">
+    <div class="ui-grid ui-grid-responsive ui-fluid" >
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-3"><label for="catagory">Catagory</label></div>
+            <div class="ui-grid-col-9"><input [disabled]="!isUserAuthenticated()" pInputText id="catagory" [(ngModel)]="comp.catagory" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-3"><label for="libraryNumber">Library Number</label></div>
+            <div class="ui-grid-col-9"><input [disabled]="!isUserAuthenticated()" pInputText id="libraryNumber" [(ngModel)]="comp.libraryNumber" /></div>
+        </div>
+       <div class="ui-grid-row">
+            <div class="ui-grid-col-3"><label for="title">Title</label></div>
+            <div class="ui-grid-col-9"><input [disabled]="!isUserAuthenticated()" [pKeyFilter]="blockSpecial" pInputText id="title" [(ngModel)]="comp.title" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-3"><label for="ensemble">Ensemble</label></div>
+            <div class="ui-grid-col-9"><input [disabled]="!isUserAuthenticated()" [pKeyFilter]="blockSpecial" pInputText id="ensembe" [(ngModel)]="comp.ensemble" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-3"><label for="composer">Composer</label></div>
+            <div class="ui-grid-col-9"><input [disabled]="!isUserAuthenticated()" [pKeyFilter]="blockSpecial" pInputText id="composer" [(ngModel)]="comp.composer" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-3"><label for="arranger">Arranger</label></div>
+            <div class="ui-grid-col-9"><input [disabled]="!isUserAuthenticated()" [pKeyFilter]="blockSpecial" pInputText id="arranger" [(ngModel)]="comp.arranger" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-3"><label for="composer">Copyright</label></div>
+            <div class="ui-grid-col-9"><input [disabled]="!isUserAuthenticated()" pInputText id="copyright" [(ngModel)]="comp.copyright" /></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-3"><label for="notes">Notes</label></div>
+            <div class="ui-grid-col-9"><textarea [disabled]="!isUserAuthenticated()" [pKeyFilter]="blockSpecial" pInputTextarea [(ngModel)]="comp.notes"></textarea></div>
+        </div>
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-3"><label for="url">URL</label></div>
+            <div class="ui-grid-col-9"><input [disabled]="!isUserAuthenticated()" [pKeyFilter]="blockSpecial" pInputText [(ngModel)]="comp.url"/></div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-3"><label for="lastEdit">Last Edit</label></div>
+            <div class="ui-grid-col-9"><input [disabled]="!isUserAuthenticated()"pInputText [(ngModel)]="comp.lastEdit"/></div>
+        </div>
+
+        <div class="ui-grid-row">
+            <div class="ui-grid-col-3"><label for="editedBy">Edited By</label></div>
+            <div class="ui-grid-col-9"><input [disabled]="!isUserAuthenticated()" pInputText [(ngModel)]="comp.editedBy"/></div>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                <span>  <button *ngIf="isUserAuthenticated()" type="button" pButton icon="fas fa-trash" (click)="delete()" label="Delete"></button></span>
+            <button *ngIf="isUserAuthenticated()" type="button" pButton icon="fa-check" (click)="save()" label="Save"></button>
+        </div>
+    </p-footer>
+</p-dialog>
+
+
+
+
