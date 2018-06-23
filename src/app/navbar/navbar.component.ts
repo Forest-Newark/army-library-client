@@ -4,7 +4,6 @@ import {MenubarModule,MenuItem, MenuItemContent} from 'primeng/primeng';
 import {DialogModule,InputTextModule,PasswordModule} from 'primeng/primeng';
 import {AuthenticationService} from '../authentication.service';
 import {ApiService} from '../api-service.service';
-import { saveAs } from 'file-saver/FileSaver';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
